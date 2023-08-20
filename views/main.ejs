@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <script src=
+"https://code.jquery.com/jquery-2.2.4.min.js">
+    </script>
+    <script src=
+"https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.5.2/dist/tf.min.js">
+    </script>
+    <link rel="stylesheet" href="/Users/krishna/Documents/fraud_transaction/style.css" />
+</head>
+  
+<body>
+    <p id="par"></p>
+
+<script type = "text/javascript">
+
+function size(ar){
+    var row_count = ar.length;
+    var row_sizes = [];
+    for(var i=0;i<row_count;i++){
+        row_sizes.push(ar[i].length)
+    }
+    return [row_count, Math.min.apply(null, row_sizes)]
+}
+
+
+async function LoadAndPredict(input_value){
+    console.log(size(input_value))
+    console.log(JSON.stringify(input_value));
+    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/krishna9911/krishna9911.github.io/main/model.json');
+    const prediction = model.predict(tf.tensor([input_value]));
+    console.log(prediction)
+    if (prediction == 1){
+        document.writeln("Fraudlent Transaction")
+    }
+
+    else{
+        document.writeln("Fraudlent Transaction")
+
+    }
+}
+
+
+function Predict(){
+    var nodes = document.forms["getFormInfo"].querySelectorAll("input[type='text']");
+    var array = [].map.call(nodes, function(item) {
+    return {name : item.name, value : item.value};
+                });
+    console.log(array);
+ 
+    LoadAndPredict(array);
+}
+
+
+
+</script>
+
+    <h1>Financial Fraud Detection</h1>
+
+    <form id="getFormInfo">
+ 
+        <p>
+            <label>Step : <input type="text" name = "input", value = ""/></label>
+        </p>
+ 
+        <p>
+            <label>Type : <input type="text" name = "input", value = ""/></label>
+        </p>
+
+        <p>
+            <label>Amount : <input type="text" name = "input", value = ""/></label>
+        </p>
+
+        <p>
+            <label>OldBalanceOrg : <input type="text" name = "input", value = ""/></label>
+        </p>
+
+        <p>
+            <label>NewBalanceOrg : <input type="text" name = "input", value = ""/></label>
+        </p>
+
+        <p>
+            <label>OldBalanceDestination : <input type="text" name = "input", value = ""/></label>
+        </p>
+
+        <p>
+            <label>NewBalanceDestination : <input type="text" name = "input", value = ""/></label>
+        </p>
+ 
+        <p>
+            <button type="button" name = "button" onclick = "Predict()">Predict Fraud</button>
+        </p>
+ 
+    </form>
+</body>
+  
+</html>
