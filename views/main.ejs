@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+    h1 {
+  color: navy;
+  margin-left: 20px;
+    }
+
+    input[type=text], select {
+      width: 20%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .button {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50; 
+    }
+    
+    </style>
   
 <head>
     <script src=
@@ -8,7 +32,6 @@
     <script src=
 "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.5.2/dist/tf.min.js">
     </script>
-    <link rel="stylesheet" href="/Users/krishna/Documents/fraud_transaction/style.css" />
 </head>
   
 <body>
@@ -33,7 +56,7 @@ async function LoadAndPredict(input_value){
     const prediction = model.predict(tf.tensor([input_value]));
     console.log(prediction)
     if (prediction == 1){
-        document.writeln("Fraudlent Transaction")
+        document.writeln("Fraudlent Transaction") 
     }
 
     else{
@@ -90,10 +113,15 @@ function Predict(){
         </p>
  
         <p>
-            <button type="button" name = "button" onclick = "Predict()">Predict Fraud</button>
+            <button type="button" name = "button" onclick = "Predict()">Predict fraud</button>
         </p>
+
  
     </form>
+
+
+    
+
 </body>
   
 </html>
